@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import * as SiIcons from 'react-icons/si';
+import { getImage, handleImageError } from '@/data/images';
 
 export default function Home() {
   const popularGiftCards = mockGiftCards.filter(c => c.popular).slice(0, 8);
@@ -22,7 +23,28 @@ export default function Home() {
       <section className="relative overflow-hidden py-20 lg:py-32">
         {/* Aurora Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-primary via-purple-500 to-pink-500 rounded-full blur-[120px] opacity-15 pointer-events-none -z-10 animate-pulse"></div>
-        
+
+        {/* Decorative hero visual */}
+        <div className="hidden lg:block absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 w-64 xl:w-80 pointer-events-none">
+          <div className="absolute -inset-8 bg-gradient-to-tr from-primary via-purple-500 to-pink-500 rounded-full blur-[90px] opacity-20"></div>
+          <img
+            src={getImage('card', 0)}
+            onError={(e) => handleImageError(e, 'unicard-hero-card', 800, 800)}
+            loading="lazy"
+            alt="Виртуальная карта Unicard"
+            className="relative w-full aspect-square object-cover rounded-3xl shadow-2xl rotate-6"
+          />
+        </div>
+        <div className="hidden lg:block absolute left-8 xl:left-16 top-[60%] w-40 xl:w-48 pointer-events-none">
+          <img
+            src={getImage('nfc', 0)}
+            onError={(e) => handleImageError(e, 'unicard-hero-nfc', 600, 600)}
+            loading="lazy"
+            alt="Оплата смартфоном NFC"
+            className="relative w-full aspect-square object-cover rounded-3xl shadow-xl -rotate-6"
+          />
+        </div>
+
         <div className="container mx-auto px-4 text-center">
           <div className="flex justify-center gap-4 mb-6">
             <span className="flex items-center gap-1.5 text-sm font-medium bg-secondary px-3 py-1 rounded-full text-secondary-foreground">
@@ -79,6 +101,28 @@ export default function Home() {
                 <p className="text-secondary-foreground text-sm leading-relaxed">{benefit.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Payment Banner */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="relative rounded-[32px] overflow-hidden aspect-video md:aspect-[21/9]">
+            <img
+              src={getImage('nfc', 1)}
+              onError={(e) => handleImageError(e, 'unicard-nfc-banner', 1600, 700)}
+              loading="lazy"
+              alt="Оплата смартфоном где угодно"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent"></div>
+            <div className="absolute inset-0 flex items-center">
+              <div className="px-8 md:px-16 max-w-xl text-white">
+                <h3 className="text-2xl md:text-4xl font-bold mb-4">Платите смартфоном где угодно</h3>
+                <p className="text-white/80 text-lg">Привяжите карту Unicard к Apple Pay или Google Pay и забудьте о пластике</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

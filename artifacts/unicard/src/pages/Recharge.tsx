@@ -5,6 +5,7 @@ import { mockGames } from '@/data/games';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Gamepad2, User, Package, ChevronRight } from 'lucide-react';
+import { getImage, handleImageError } from '@/data/images';
 
 export default function Recharge() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -36,7 +37,24 @@ export default function Recharge() {
           <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
             <Gamepad2 className="w-8 h-8 text-primary" /> Прямое пополнение
           </h1>
-          
+
+          <div className="relative rounded-3xl overflow-hidden aspect-video md:aspect-[21/9] mb-8">
+            <img
+              src={getImage('gaming', 1)}
+              onError={(e) => handleImageError(e, 'unicard-recharge-banner', 1600, 700)}
+              loading="lazy"
+              alt="Прямое пополнение игрового баланса"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+            <div className="absolute inset-0 flex items-center">
+              <div className="px-8 md:px-16 max-w-xl text-white">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Пополнение без передачи аккаунта</h3>
+                <p className="text-white/80">Просто укажите ваш игровой ID — зачисление за минуты</p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Form Column */}

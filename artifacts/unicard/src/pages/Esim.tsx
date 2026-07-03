@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Globe2, Signal, Zap } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { getImage, handleImageError } from '@/data/images';
 
 export default function Esim() {
   const [search, setSearch] = useState('');
@@ -43,13 +44,37 @@ export default function Esim() {
               </div>
             </div>
             <div className="hidden md:block relative z-10">
-              <div className="w-48 h-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-[32px] p-6 shadow-2xl transform rotate-12">
-                <div className="w-full h-full border border-dashed border-white/30 rounded-2xl flex items-center justify-center">
-                  <div className="text-center">
+              <div className="relative w-48 h-64 rounded-[32px] overflow-hidden shadow-2xl transform rotate-12 border border-white/20">
+                <img
+                  src={getImage('travel', 1)}
+                  onError={(e) => handleImageError(e, 'unicard-esim-hero', 400, 560)}
+                  loading="lazy"
+                  alt="Путешествия с eSIM"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center">
+                  <div className="text-center text-white">
                     <span className="text-4xl block mb-2">📲</span>
                     <span className="font-bold text-sm">Scan to install</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden aspect-video md:aspect-[21/9] mb-10">
+            <img
+              src={getImage('mobile', 0)}
+              onError={(e) => handleImageError(e, 'unicard-esim-banner', 1600, 700)}
+              loading="lazy"
+              alt="Мобильная связь и eSIM в путешествии"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+            <div className="absolute inset-0 flex items-center">
+              <div className="px-8 md:px-16 max-w-xl text-white">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Оставайтесь на связи в любой точке мира</h3>
+                <p className="text-white/80">Выберите страну и подключите eSIM за пару минут</p>
               </div>
             </div>
           </div>

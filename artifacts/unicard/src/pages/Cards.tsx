@@ -4,6 +4,7 @@ import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { CheckCircle2, ChevronRight, Info, ShoppingCart, CreditCard, Smartphone, Megaphone, QrCode, Bitcoin, Users, Wallet } from 'lucide-react';
+import { getImage, handleImageError } from '@/data/images';
 
 export default function OrderCard() {
   const [step, setStep] = useState(1);
@@ -69,6 +70,23 @@ export default function OrderCard() {
             <p className="text-secondary-foreground">Настройте карту под ваши задачи</p>
           </div>
 
+          <div className="relative rounded-3xl overflow-hidden aspect-video mb-8">
+            <img
+              src={getImage('card', 1)}
+              onError={(e) => handleImageError(e, 'unicard-cards-banner', 1200, 600)}
+              loading="lazy"
+              alt="Виртуальные и пластиковые карты MasterCard и Visa"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div className="absolute bottom-6 left-6 text-white">
+              <p className="text-sm font-medium opacity-90">MasterCard &amp; Visa</p>
+              <p className="text-xl font-bold">Выпуск карты за 2 минуты</p>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="hidden md:block absolute -top-10 -right-10 w-56 h-56 bg-gradient-to-tr from-primary via-purple-500 to-pink-500 rounded-full blur-[80px] opacity-15 pointer-events-none -z-10"></div>
           <div className="bg-white rounded-[32px] p-6 md:p-10 shadow-sm border border-border">
             
             {/* Step 1 */}
@@ -216,6 +234,7 @@ export default function OrderCard() {
             <p className="text-center text-xs text-secondary-foreground mt-4">
               Нажимая кнопку, вы соглашаетесь с условиями выпуска карты
             </p>
+          </div>
           </div>
 
         </div>

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Server, Globe, Shield, Terminal, Home, Smartphone, Database, Network, Search, Users, Megaphone, Share2, TrendingUp, MapPin } from 'lucide-react';
+import { getImage, handleImageError } from '@/data/images';
 
 export default function Proxy() {
   const [type, setType] = useState('Резидентные');
@@ -55,6 +56,23 @@ export default function Proxy() {
             <p className="text-secondary-foreground text-lg max-w-2xl mx-auto">
               Надежные приватные прокси для любых задач. HTTP/SOCKS5.
             </p>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden aspect-video md:aspect-[21/9] mb-12">
+            <img
+              src={getImage('security', 1)}
+              onError={(e) => handleImageError(e, 'unicard-proxy-banner', 1600, 700)}
+              loading="lazy"
+              alt="Безопасные и приватные прокси"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+            <div className="absolute inset-0 flex items-center">
+              <div className="px-8 md:px-16 max-w-xl text-white">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">Приватность и стабильность на первом месте</h3>
+                <p className="text-white/80">Резидентные, мобильные и datacenter IP по всему миру</p>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">

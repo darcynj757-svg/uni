@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Shield, Zap, Lock, Globe, Server, Download, Check, Monitor } from 'lucide-react';
 import { SiApple, SiAndroid, SiMacos } from 'react-icons/si';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { getImage, handleImageError } from '@/data/images';
 
 export default function Vpn() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +15,14 @@ export default function Vpn() {
     <MainLayout>
       {/* Hero */}
       <section className="bg-[#1a1a2e] text-white pt-20 pb-32 relative overflow-hidden">
+        <img
+          src={getImage('security', 0)}
+          onError={(e) => handleImageError(e, 'unicard-vpn-hero', 1920, 900)}
+          loading="lazy"
+          alt="Безопасность и защита данных"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a2e]/60 via-[#1a1a2e]/80 to-[#1a1a2e]"></div>
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
         <div className="container mx-auto px-4 text-center relative z-10 max-w-4xl">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-sm font-medium mb-6 backdrop-blur-md">

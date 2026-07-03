@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CreditCard, Globe2, Building2, Wallet, ClipboardList, DollarSign, CheckCircle2 } from 'lucide-react';
+import { getImage, handleImageError } from '@/data/images';
 
 export default function Transfers() {
   const [amount, setAmount] = useState('1000');
@@ -56,6 +57,20 @@ export default function Transfers() {
             
             {/* Left side - Visuals */}
             <div className="order-2 lg:order-1">
+              <div className="relative rounded-3xl overflow-hidden aspect-video mb-8">
+                <img
+                  src={getImage('travel', 0)}
+                  onError={(e) => handleImageError(e, 'unicard-transfers-banner', 1000, 560)}
+                  loading="lazy"
+                  alt="Международные переводы"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                <div className="absolute bottom-5 left-5 text-white">
+                  <p className="text-lg font-bold">Переводите деньги куда угодно</p>
+                </div>
+              </div>
+
               <h2 className="text-2xl font-bold mb-6">Популярные направления</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-12">
                 {popularDestinations.map(dest => (
