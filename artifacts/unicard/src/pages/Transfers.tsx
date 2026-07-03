@@ -4,7 +4,7 @@ import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowRight, Globe2, Building2, Wallet } from 'lucide-react';
+import { CreditCard, Globe2, Building2, Wallet, ClipboardList, DollarSign, CheckCircle2 } from 'lucide-react';
 
 export default function Transfers() {
   const [amount, setAmount] = useState('1000');
@@ -16,7 +16,7 @@ export default function Transfers() {
   const [calc, setCalc] = useState({ commission: 0, total: 0 });
 
   const methods = [
-    { id: 'card', label: 'На карту', icon: ArrowRight },
+    { id: 'card', label: 'На карту', icon: CreditCard },
     { id: 'bank', label: 'Банковский перевод', icon: Building2 },
     { id: 'wallet', label: 'Кошелёк', icon: Wallet },
   ];
@@ -76,13 +76,13 @@ export default function Transfers() {
                 <h2 className="text-2xl font-bold mb-6">Как это работает?</h2>
                 <div className="space-y-6">
                   {[
-                    { step: 1, title: 'Заполните данные', desc: 'Укажите страну, сумму и реквизиты получателя' },
-                    { step: 2, title: 'Оплатите перевод', desc: 'С российской карты или через баланс Личного кабинета' },
-                    { step: 3, title: 'Деньги доставлены', desc: 'Обычно перевод занимает от 5 минут до 1 рабочего дня' },
+                    { step: 1, title: 'Заполните данные', desc: 'Укажите страну, сумму и реквизиты получателя', icon: ClipboardList },
+                    { step: 2, title: 'Оплатите перевод', desc: 'С российской карты или через баланс Личного кабинета', icon: DollarSign },
+                    { step: 3, title: 'Деньги доставлены', desc: 'Обычно перевод занимает от 5 минут до 1 рабочего дня', icon: CheckCircle2 },
                   ].map((s) => (
                     <div key={s.step} className="flex gap-4">
-                      <div className="w-10 h-10 shrink-0 rounded-full bg-secondary text-primary font-bold flex items-center justify-center">
-                        {s.step}
+                      <div className="w-10 h-10 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                        <s.icon className="w-5 h-5" />
                       </div>
                       <div>
                         <h4 className="font-bold">{s.title}</h4>

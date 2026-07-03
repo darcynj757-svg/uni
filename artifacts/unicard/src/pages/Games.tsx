@@ -78,11 +78,14 @@ export default function Games() {
                   <div className="mt-auto pt-4 border-t border-border flex justify-between items-center">
                     <span className="text-xs font-medium text-secondary-foreground">От {game.minCharge} ₽</span>
                     <div className="flex gap-1">
-                      {game.platforms.map(plat => (
-                        <span key={plat} className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-[10px]">
-                          {plat === 'PC' ? '💻' : plat === 'Mobile' ? '📱' : '🎮'}
-                        </span>
-                      ))}
+                      {game.platforms.map(plat => {
+                        const PlatIcon = plat === 'PC' ? Monitor : plat === 'Mobile' ? Smartphone : Gamepad2;
+                        return (
+                          <span key={plat} title={plat} className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center">
+                            <PlatIcon className="w-3.5 h-3.5 text-secondary-foreground" />
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'wouter';
 import { useAuth } from '@/context/AuthContext';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, CreditCard, Gift, Gamepad2, Zap, ArrowRightLeft, Signal, Shield, Server } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Header() {
@@ -10,14 +10,14 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const navLinks = [
-    { label: 'Карты', href: '/cards' },
-    { label: 'Гифт-карты', href: '/gift-cards' },
-    { label: 'Игры', href: '/games' },
-    { label: 'Пополнение', href: '/recharge' },
-    { label: 'Переводы', href: '/transfers' },
-    { label: 'eSIM', href: '/esim' },
-    { label: 'VPN', href: '/vpn' },
-    { label: 'Прокси', href: '/proxy' },
+    { label: 'Карты', href: '/cards', icon: CreditCard },
+    { label: 'Гифт-карты', href: '/gift-cards', icon: Gift },
+    { label: 'Игры', href: '/games', icon: Gamepad2 },
+    { label: 'Пополнение', href: '/recharge', icon: Zap },
+    { label: 'Переводы', href: '/transfers', icon: ArrowRightLeft },
+    { label: 'eSIM', href: '/esim', icon: Signal },
+    { label: 'VPN', href: '/vpn', icon: Shield },
+    { label: 'Прокси', href: '/proxy', icon: Server },
   ];
 
   return (
@@ -28,14 +28,19 @@ export function Header() {
             UNICARD
           </Link>
           
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${location === link.href ? 'text-primary' : 'text-secondary-foreground/80'}`}>
-                  {link.label}
-                </span>
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center gap-5">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              const active = location === link.href;
+              return (
+                <Link key={link.href} href={link.href}>
+                  <span className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${active ? 'text-primary' : 'text-secondary-foreground/80'}`}>
+                    <Icon className={`w-3.5 h-3.5 ${active ? 'text-primary' : 'text-muted-foreground'}`} />
+                    {link.label}
+                  </span>
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
@@ -62,16 +67,20 @@ export function Header() {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-white border-b border-border shadow-lg py-4 px-4 flex flex-col gap-4 z-50">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              <span 
-                className="block text-lg font-medium py-2 border-b border-secondary/50 cursor-pointer"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </span>
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Link key={link.href} href={link.href}>
+                <span 
+                  className="flex items-center gap-3 text-lg font-medium py-2 border-b border-secondary/50 cursor-pointer"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Icon className="w-5 h-5 text-primary" />
+                  {link.label}
+                </span>
+              </Link>
+            );
+          })}
           <div className="flex flex-col gap-4 mt-4">
             <Link href={isLoggedIn ? '/cabinet' : '/cabinet/login'}>
               <Button 

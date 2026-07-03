@@ -4,7 +4,7 @@ import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { mockGiftCards } from '@/data/giftCards';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search } from 'lucide-react';
+import { Search, LayoutGrid, Gamepad2, Star, Play, ShoppingBag, Tag } from 'lucide-react';
 import * as SiIcons from 'react-icons/si';
 
 export default function GiftCards() {
@@ -21,7 +21,13 @@ export default function GiftCards() {
     return () => clearTimeout(timer);
   }, []);
 
-  const categories = ['Все', 'Игры', 'Подписки', 'Стриминг', 'Шопинг'];
+  const categories = [
+    { label: 'Все', icon: LayoutGrid },
+    { label: 'Игры', icon: Gamepad2 },
+    { label: 'Подписки', icon: Star },
+    { label: 'Стриминг', icon: Play },
+    { label: 'Шопинг', icon: ShoppingBag },
+  ];
   const priceRanges = ['Любая', 'до 1000₽', '1000-3000₽', '3000₽+'];
 
   const filtered = mockGiftCards.filter(c => {
@@ -63,19 +69,23 @@ export default function GiftCards() {
 
           <div className="flex flex-col gap-4 mb-8">
             <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
-              {categories.map(c => (
-                <button
-                  key={c}
-                  onClick={() => setActiveCategory(c)}
-                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    activeCategory === c 
-                      ? 'bg-foreground text-white' 
-                      : 'bg-white text-secondary-foreground border border-border hover:border-primary'
-                  }`}
-                >
-                  {c}
-                </button>
-              ))}
+              {categories.map(c => {
+                const Icon = c.icon;
+                return (
+                  <button
+                    key={c.label}
+                    onClick={() => setActiveCategory(c.label)}
+                    className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+                      activeCategory === c.label 
+                        ? 'bg-foreground text-white' 
+                        : 'bg-white text-secondary-foreground border border-border hover:border-primary'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {c.label}
+                  </button>
+                );
+              })}
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
               {priceRanges.map(p => (

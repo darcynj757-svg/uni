@@ -4,10 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
 import { mockGiftCards } from '@/data/giftCards';
 import { mockEsim } from '@/data/esim';
-import { CheckCircle2, CreditCard as CardIcon, Globe, Lock, Shield, Smartphone, Zap } from 'lucide-react';
+import {
+  CreditCard, Banknote, Gift, Gamepad2, Signal, Send,
+  Globe, Lock, Shield, Smartphone, Zap, Star,
+  ShieldCheck, Server, WifiHigh
+} from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-
-// Helper for dynamic icons
 import * as SiIcons from 'react-icons/si';
 
 export default function Home() {
@@ -87,17 +89,19 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Все наши продукты</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "Виртуальные карты", icon: "💳", href: "/cards" },
-              { title: "Пластиковые карты", icon: "🏧", href: "/cards" },
-              { title: "Гифт-карты", icon: "🎁", href: "/gift-cards" },
-              { title: "Пополнение игр", icon: "🎮", href: "/games" },
-              { title: "eSIM интернет", icon: "📶", href: "/esim" },
-              { title: "Переводы за рубеж", icon: "💸", href: "/transfers" },
+              { title: "Виртуальные карты", icon: CreditCard, color: "from-blue-500 to-blue-600", href: "/cards" },
+              { title: "Пластиковые карты", icon: Banknote, color: "from-violet-500 to-purple-600", href: "/cards" },
+              { title: "Гифт-карты", icon: Gift, color: "from-pink-500 to-rose-500", href: "/gift-cards" },
+              { title: "Пополнение игр", icon: Gamepad2, color: "from-emerald-500 to-teal-600", href: "/games" },
+              { title: "eSIM интернет", icon: Signal, color: "from-sky-500 to-cyan-600", href: "/esim" },
+              { title: "Переводы за рубеж", icon: Send, color: "from-amber-500 to-orange-500", href: "/transfers" },
             ].map((prod, i) => (
               <Link key={i} href={prod.href}>
                 <div className="group border-gradient-gemini cursor-pointer">
                   <div className="bg-white p-8 rounded-[24px] h-full flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all">
-                    <span className="text-5xl mb-4 group-hover:scale-110 transition-transform">{prod.icon}</span>
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${prod.color} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-md`}>
+                      <prod.icon className="w-8 h-8 text-white" />
+                    </div>
                     <h3 className="text-xl font-bold">{prod.title}</h3>
                   </div>
                 </div>
@@ -165,8 +169,15 @@ export default function Home() {
             <div className="bg-gradient-to-br from-[#1a1a2e] to-[#2a2a4a] text-white p-8 md:p-12 rounded-[32px] relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[80px] rounded-full group-hover:bg-primary/40 transition-colors"></div>
               <div className="relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
                 <h3 className="text-3xl font-bold mb-4">Unicard VPN</h3>
-                <p className="text-gray-300 text-lg mb-8 max-w-sm">Быстрый · Без логов · WireGuard протокол для максимальной скорости</p>
+                <div className="flex flex-col gap-2 mb-6 text-gray-300 text-sm">
+                  <span className="flex items-center gap-2"><Lock className="w-4 h-4 text-primary/80" /> Без логов</span>
+                  <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-primary/80" /> WireGuard · до 1 Гбит/с</span>
+                  <span className="flex items-center gap-2"><Smartphone className="w-4 h-4 text-primary/80" /> iOS, Android, Windows, macOS</span>
+                </div>
                 <Link href="/vpn">
                   <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-8">Подробнее</Button>
                 </Link>
@@ -176,8 +187,15 @@ export default function Home() {
             <div className="bg-gradient-gemini text-white p-8 md:p-12 rounded-[32px] relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 blur-[80px] rounded-full"></div>
               <div className="relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center mb-4">
+                  <Server className="w-6 h-6 text-white" />
+                </div>
                 <h3 className="text-3xl font-bold mb-4">Unicard Proxy</h3>
-                <p className="text-white/90 text-lg mb-8 max-w-sm">Резидентные · Datacenter · IPv4/IPv6 для любых задач</p>
+                <div className="flex flex-col gap-2 mb-6 text-white/80 text-sm">
+                  <span className="flex items-center gap-2"><Globe className="w-4 h-4 text-white/70" /> Резидентные и Datacenter</span>
+                  <span className="flex items-center gap-2"><Shield className="w-4 h-4 text-white/70" /> IPv4 / IPv6 · HTTP/SOCKS5</span>
+                  <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-white/70" /> Мгновенная выдача</span>
+                </div>
                 <Link href="/proxy">
                   <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-8">Подробнее</Button>
                 </Link>
@@ -224,7 +242,7 @@ export default function Home() {
             ].map((review, i) => (
               <div key={i} className="bg-white border border-border p-8 rounded-[24px] shadow-sm">
                 <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, j) => <span key={j} className="text-yellow-400">⭐</span>)}
+                  {[...Array(5)].map((_, j) => <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
                 </div>
                 <p className="text-foreground leading-relaxed mb-6">"{review.text}"</p>
                 <div className="flex items-center gap-3">

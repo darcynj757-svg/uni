@@ -3,7 +3,7 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { CheckCircle2, ChevronRight, Info } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Info, ShoppingCart, CreditCard, Smartphone, Megaphone, QrCode, Bitcoin, Users, Wallet } from 'lucide-react';
 
 export default function OrderCard() {
   const [step, setStep] = useState(1);
@@ -15,7 +15,13 @@ export default function OrderCard() {
   
   const [calc, setCalc] = useState({ usd: 0, rate: 84, commission: 0, total: 0 });
 
-  const cardTypes = ['Для покупок', 'Универсальная', 'Для Apple Pay и Google Pay', 'Для рекламы', 'Пластиковая'];
+  const cardTypes = [
+    { label: 'Для покупок', icon: ShoppingCart },
+    { label: 'Универсальная', icon: CreditCard },
+    { label: 'Для Apple Pay и Google Pay', icon: Smartphone },
+    { label: 'Для рекламы', icon: Megaphone },
+    { label: 'Пластиковая', icon: CreditCard },
+  ];
   
   const bins = [
     { id: 'bin1', title: 'USD BIN 448591', type: 'MasterCard', fee: 3, desc: 'Хорошо подходит для подписок' },
@@ -23,7 +29,12 @@ export default function OrderCard() {
     { id: 'bin3', title: 'USD BIN 404038', type: 'Visa Premium', fee: 2, desc: 'Premium BIN, работает везде' },
   ];
 
-  const paymentMethods = ['СБП QR', 'Крипто −5%', 'P2P', 'Счёт ЛК'];
+  const paymentMethods = [
+    { label: 'СБП QR', icon: QrCode },
+    { label: 'Крипто −5%', icon: Bitcoin },
+    { label: 'P2P', icon: Users },
+    { label: 'Счёт ЛК', icon: Wallet },
+  ];
 
   useEffect(() => {
     const numAmount = parseFloat(amount) || 0;
@@ -67,19 +78,23 @@ export default function OrderCard() {
                 Выберите тип карты
               </h3>
               <div className="flex flex-wrap gap-2">
-                {cardTypes.map(t => (
-                  <button
-                    key={t}
-                    onClick={() => setCardType(t)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      cardType === t 
-                        ? 'bg-gradient-gemini text-white shadow-md' 
-                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-                    }`}
-                  >
-                    {t}
-                  </button>
-                ))}
+                {cardTypes.map(t => {
+                  const Icon = t.icon;
+                  return (
+                    <button
+                      key={t.label}
+                      onClick={() => setCardType(t.label)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                        cardType === t.label 
+                          ? 'bg-gradient-gemini text-white shadow-md' 
+                          : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {t.label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -141,19 +156,23 @@ export default function OrderCard() {
                 Способ оплаты
               </h3>
               <div className="flex flex-wrap gap-2">
-                {paymentMethods.map(m => (
-                  <button
-                    key={m}
-                    onClick={() => setPaymentMethod(m)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      paymentMethod === m 
-                        ? 'bg-primary text-white shadow-md' 
-                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-                    }`}
-                  >
-                    {m}
-                  </button>
-                ))}
+                {paymentMethods.map(m => {
+                  const Icon = m.icon;
+                  return (
+                    <button
+                      key={m.label}
+                      onClick={() => setPaymentMethod(m.label)}
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all ${
+                        paymentMethod === m.label 
+                          ? 'bg-primary text-white shadow-md' 
+                          : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {m.label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 

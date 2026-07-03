@@ -4,7 +4,7 @@ import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Server, Globe, Shield, Terminal } from 'lucide-react';
+import { Server, Globe, Shield, Terminal, Home, Smartphone, Database, Network, Search, Users, Megaphone, Share2, TrendingUp, MapPin } from 'lucide-react';
 
 export default function Proxy() {
   const [type, setType] = useState('Резидентные');
@@ -16,10 +16,10 @@ export default function Proxy() {
   const [total, setTotal] = useState(0);
 
   const types = [
-    { id: 'Резидентные', basePrice: 350 },
-    { id: 'Мобильные', basePrice: 500 },
-    { id: 'Datacenter IPv4', basePrice: 150 },
-    { id: 'IPv6', basePrice: 50 },
+    { id: 'Резидентные', basePrice: 350, icon: Home },
+    { id: 'Мобильные', basePrice: 500, icon: Smartphone },
+    { id: 'Datacenter IPv4', basePrice: 150, icon: Server },
+    { id: 'IPv6', basePrice: 50, icon: Network },
   ];
 
   const durations = [
@@ -36,7 +36,14 @@ export default function Proxy() {
     setTotal(Math.round(activeType.basePrice * qty * activeDuration.mult));
   }, [type, count, duration]);
 
-  const useCases = ['Парсинг', 'Мультиаккаунты', 'Реклама', 'SMM', 'SEO', 'Георазблокировка'];
+  const useCases = [
+    { label: 'Парсинг', icon: Search },
+    { label: 'Мультиаккаунты', icon: Users },
+    { label: 'Реклама', icon: Megaphone },
+    { label: 'SMM', icon: Share2 },
+    { label: 'SEO', icon: TrendingUp },
+    { label: 'Георазблокировка', icon: MapPin },
+  ];
 
   return (
     <MainLayout>
@@ -58,19 +65,23 @@ export default function Proxy() {
               <div className="bg-white p-6 md:p-8 rounded-[32px] border border-border shadow-sm">
                 <h3 className="font-bold text-lg mb-4">1. Тип прокси</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {types.map(t => (
-                    <button
-                      key={t.id}
-                      onClick={() => setType(t.id)}
-                      className={`p-3 rounded-2xl border-2 text-sm font-medium transition-all text-center ${
-                        type === t.id 
-                          ? 'border-primary bg-primary/5 text-primary' 
-                          : 'border-border text-secondary-foreground hover:border-primary/30'
-                      }`}
-                    >
-                      {t.id}
-                    </button>
-                  ))}
+                  {types.map(t => {
+                    const Icon = t.icon;
+                    return (
+                      <button
+                        key={t.id}
+                        onClick={() => setType(t.id)}
+                        className={`p-4 rounded-2xl border-2 text-sm font-medium transition-all text-center flex flex-col items-center gap-2 ${
+                          type === t.id 
+                            ? 'border-primary bg-primary/5 text-primary' 
+                            : 'border-border text-secondary-foreground hover:border-primary/30'
+                        }`}
+                      >
+                        <Icon className="w-5 h-5" />
+                        {t.id}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -167,11 +178,15 @@ export default function Proxy() {
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-6">Идеально подходит для:</h2>
             <div className="flex flex-wrap justify-center gap-3">
-              {useCases.map(uc => (
-                <div key={uc} className="bg-white px-6 py-3 rounded-full border border-border text-secondary-foreground shadow-sm">
-                  {uc}
-                </div>
-              ))}
+              {useCases.map(uc => {
+                const Icon = uc.icon;
+                return (
+                  <div key={uc.label} className="bg-white px-5 py-2.5 rounded-full border border-border text-secondary-foreground shadow-sm flex items-center gap-2">
+                    <Icon className="w-4 h-4 text-primary" />
+                    {uc.label}
+                  </div>
+                );
+              })}
             </div>
           </div>
 

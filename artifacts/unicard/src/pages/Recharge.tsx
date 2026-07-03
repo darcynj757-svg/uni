@@ -4,7 +4,7 @@ import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { mockGames } from '@/data/games';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useLocation } from 'wouter';
+import { Gamepad2, User, Package, ChevronRight } from 'lucide-react';
 
 export default function Recharge() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -33,14 +33,16 @@ export default function Recharge() {
       <div className="min-h-screen bg-[#F8F9FE] py-12">
         <div className="container mx-auto px-4 max-w-5xl">
           
-          <h1 className="text-3xl font-bold mb-8">Прямое пополнение</h1>
+          <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
+            <Gamepad2 className="w-8 h-8 text-primary" /> Прямое пополнение
+          </h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Form Column */}
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
-                <h3 className="font-bold text-lg mb-4">1. Выберите игру</h3>
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><Gamepad2 className="w-5 h-5 text-primary" /> 1. Выберите игру</h3>
                 <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
                   {mockGames.slice(0, 10).map(g => (
                     <button
@@ -59,7 +61,7 @@ export default function Recharge() {
               </div>
 
               <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
-                <h3 className="font-bold text-lg mb-4">2. Введите ID игрока</h3>
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><User className="w-5 h-5 text-primary" /> 2. Введите ID игрока</h3>
                 <Input 
                   placeholder="Например: 5123456789" 
                   value={playerId}
@@ -70,7 +72,7 @@ export default function Recharge() {
               </div>
 
               <div className="bg-white p-6 rounded-3xl border border-border shadow-sm">
-                <h3 className="font-bold text-lg mb-4">3. Выберите пакет</h3>
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><Package className="w-5 h-5 text-primary" /> 3. Выберите пакет</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {packages.map((pkg, i) => (
                     <button

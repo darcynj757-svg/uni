@@ -3,7 +3,8 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { ConfirmationModal } from '@/components/ConfirmationModal';
 import { mockVpnPlans, mockVpnLocations } from '@/data/vpn';
 import { Button } from '@/components/ui/button';
-import { Shield, Zap, Lock, Globe, Server, Download, Check } from 'lucide-react';
+import { Shield, Zap, Lock, Globe, Server, Download, Check, Monitor } from 'lucide-react';
+import { SiApple, SiAndroid, SiMacos } from 'react-icons/si';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export default function Vpn() {
@@ -113,9 +114,14 @@ export default function Vpn() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-3xl font-bold mb-12">Приложения для любых устройств</h2>
           <div className="flex flex-wrap justify-center gap-4">
-            {['iOS', 'Android', 'Windows', 'macOS'].map(os => (
+            {[
+              { os: 'iOS', icon: SiApple },
+              { os: 'Android', icon: SiAndroid },
+              { os: 'Windows', icon: Monitor },
+              { os: 'macOS', icon: SiMacos },
+            ].map(({ os, icon: OsIcon }) => (
               <Button key={os} variant="outline" className="h-14 px-8 rounded-full border-border hover:border-primary hover:bg-primary/5 flex items-center gap-2">
-                <Download className="w-5 h-5 text-primary" />
+                <OsIcon className="w-5 h-5 text-primary" />
                 Скачать для {os}
               </Button>
             ))}

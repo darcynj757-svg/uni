@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'wouter';
 import { SiTelegram, SiYoutube, SiInstagram } from 'react-icons/si';
+import { CreditCard, Gift, Shield, Signal, Info, Mail, BookOpen, HelpCircle, FileText, MessageCircle } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -21,29 +22,29 @@ export function Footer() {
           
           <div>
             <h4 className="font-semibold mb-4 text-white">Продукты</h4>
-            <ul className="flex flex-col gap-2 text-sm text-gray-400">
-              <li><Link href="/cards"><span className="hover:text-white cursor-pointer transition-colors">Карты</span></Link></li>
-              <li><Link href="/gift-cards"><span className="hover:text-white cursor-pointer transition-colors">Гифт-карты</span></Link></li>
-              <li><Link href="/vpn"><span className="hover:text-white cursor-pointer transition-colors">VPN</span></Link></li>
-              <li><Link href="/esim"><span className="hover:text-white cursor-pointer transition-colors">eSIM</span></Link></li>
+            <ul className="flex flex-col gap-3 text-sm text-gray-400">
+              <li><Link href="/cards"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><CreditCard className="w-4 h-4 text-gray-500" />Карты</span></Link></li>
+              <li><Link href="/gift-cards"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><Gift className="w-4 h-4 text-gray-500" />Гифт-карты</span></Link></li>
+              <li><Link href="/vpn"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><Shield className="w-4 h-4 text-gray-500" />VPN</span></Link></li>
+              <li><Link href="/esim"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><Signal className="w-4 h-4 text-gray-500" />eSIM</span></Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold mb-4 text-white">Компания</h4>
-            <ul className="flex flex-col gap-2 text-sm text-gray-400">
-              <li><Link href="/about"><span className="hover:text-white cursor-pointer transition-colors">О нас</span></Link></li>
-              <li><Link href="/contacts"><span className="hover:text-white cursor-pointer transition-colors">Контакты</span></Link></li>
-              <li><Link href="/blog"><span className="hover:text-white cursor-pointer transition-colors">Блог</span></Link></li>
+            <ul className="flex flex-col gap-3 text-sm text-gray-400">
+              <li><Link href="/about"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><Info className="w-4 h-4 text-gray-500" />О нас</span></Link></li>
+              <li><Link href="/contacts"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><Mail className="w-4 h-4 text-gray-500" />Контакты</span></Link></li>
+              <li><Link href="/blog"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><BookOpen className="w-4 h-4 text-gray-500" />Блог</span></Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold mb-4 text-white">Поддержка</h4>
-            <ul className="flex flex-col gap-2 text-sm text-gray-400">
-              <li><Link href="/faq"><span className="hover:text-white cursor-pointer transition-colors">FAQ</span></Link></li>
-              <li><Link href="/terms"><span className="hover:text-white cursor-pointer transition-colors">Пользовательское соглашение</span></Link></li>
-              <li><a href="#" className="hover:text-white transition-colors">Связаться с нами</a></li>
+            <ul className="flex flex-col gap-3 text-sm text-gray-400">
+              <li><Link href="/faq"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><HelpCircle className="w-4 h-4 text-gray-500" />FAQ</span></Link></li>
+              <li><Link href="/terms"><span className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><FileText className="w-4 h-4 text-gray-500" />Соглашение</span></Link></li>
+              <li><a href="#" className="flex items-center gap-2 hover:text-white transition-colors"><MessageCircle className="w-4 h-4 text-gray-500" />Связаться с нами</a></li>
             </ul>
           </div>
         </div>
