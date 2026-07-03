@@ -1,0 +1,22 @@
+export const mockGiftCards = [
+  { id: '1', name: 'Steam', logo: 'SiSteam', category: 'Игры', countries: ['GLOBAL', 'US', 'TR', 'AR'], prices: [500, 1000, 2000, 5000], popular: true },
+  { id: '2', name: 'PlayStation', logo: 'SiPlaystation', category: 'Игры', countries: ['US', 'UK', 'TR'], prices: [1000, 2500, 5000, 10000], popular: true },
+  { id: '3', name: 'Xbox', logo: 'SiXbox', category: 'Игры', countries: ['GLOBAL', 'US', 'TR'], prices: [500, 1500, 3000, 6000], popular: true },
+  { id: '4', name: 'Netflix', logo: 'SiNetflix', category: 'Стриминг', countries: ['GLOBAL', 'US', 'TR'], prices: [1500, 3000, 5000], popular: true },
+  { id: '5', name: 'Spotify', logo: 'SiSpotify', category: 'Стриминг', countries: ['GLOBAL', 'US'], prices: [750, 1500, 3000], popular: true },
+  { id: '6', name: 'Apple', logo: 'SiApple', category: 'Подписки', countries: ['US', 'TR'], prices: [1000, 2500, 5000, 10000], popular: true },
+  { id: '7', name: 'Google Play', logo: 'SiGoogleplay', category: 'Подписки', countries: ['US', 'TR'], prices: [500, 1000, 2500, 5000], popular: true },
+  { id: '8', name: 'Amazon', logo: 'SiAmazon', category: 'Шопинг', countries: ['US', 'UK'], prices: [1000, 2000, 5000, 10000], popular: false },
+  { id: '9', name: 'Roblox', logo: 'SiRoblox', category: 'Игры', countries: ['GLOBAL'], prices: [500, 1000, 2000, 5000], popular: true },
+  { id: '10', name: 'Minecraft', logo: 'SiMinutemailer', category: 'Игры', countries: ['GLOBAL'], prices: [1500, 3000], popular: false },
+  { id: '11', name: 'Nintendo', logo: 'SiNintendo', category: 'Игры', countries: ['US', 'JP'], prices: [1000, 2500, 5000], popular: false },
+  { id: '12', name: 'Twitch', logo: 'SiTwitch', category: 'Стриминг', countries: ['GLOBAL'], prices: [500, 1000, 2500], popular: false },
+  { id: '13', name: 'Epic Games', logo: 'SiEpicgames', category: 'Игры', countries: ['GLOBAL'], prices: [1000, 2500, 5000], popular: false },
+  { id: '14', name: 'Discord', logo: 'SiDiscord', category: 'Подписки', countries: ['GLOBAL'], prices: [500, 1000, 5000], popular: true },
+  { id: '15', name: 'VK Музыка', logo: 'SiVk', category: 'Стриминг', countries: ['RU'], prices: [169, 500, 1500], popular: false },
+  { id: '16', name: 'Яндекс.Плюс', logo: 'SiYandex', category: 'Подписки', countries: ['RU'], prices: [299, 900, 2500], popular: false },
+  { id: '17', name: 'Shein', logo: 'SiShein', category: 'Шопинг', countries: ['GLOBAL', 'US'], prices: [2000, 5000, 10000], popular: false },
+  { id: '18', name: 'Okko', logo: 'SiYoutube', category: 'Стриминг', countries: ['RU'], prices: [399, 1000, 2500], popular: false },
+  { id: '19', name: 'Premier', logo: 'SiVimeo', category: 'Стриминг', countries: ['RU'], prices: [299, 1000, 2500], popular: false },
+  { id: '20', name: 'Кинопоиск', logo: 'SiYandex', category: 'Стриминг', countries: ['RU'], prices: [299, 1000, 2500], popular: false }
+];

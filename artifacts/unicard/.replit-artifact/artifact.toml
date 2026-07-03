@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Unicard"
+version = "1.0.0"
+id = "artifacts/unicard"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23973
+
+[services.development]
+run = "pnpm --filter @workspace/unicard run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/unicard", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/unicard/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23973"
+BASE_PATH = "/"
